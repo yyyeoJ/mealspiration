@@ -16,10 +16,10 @@ function App() {
 
   // api site  https://developer.edamam.com/edamam-docs-recipe-api#/
 
-    //const [recipes,setRecipes] = useState([]);
+    const [recipes,setRecipes] = useState([]);
     const [queryArray,setQueryArray] = useState([]);
     const [inputField,setInputField] = useState("");
-
+/*
     const recipes = [
         {
             "recipe": {
@@ -5009,7 +5009,7 @@ function App() {
             }
         }
     ]
-    
+    */
     const [API_URL,setAPI_URL] = useState("https://api.edamam.com/api/recipes/v2?type=public&app_id=01e9579a&app_key=08c4b8ce44973e5658e1fafd517be559&random=true&field=label&field=image&field=url&field=yield&field=dietLabels&field=healthLabels&field=ingredientLines&field=calories&field=mealType&field=dishType&field=totalNutrients");
 
     const searchRecipes = async (api)=>{
@@ -5023,7 +5023,7 @@ function App() {
  
 
     useEffect(()=>{
-        //searchRecipes(`${API_URL}&q=random`);
+        searchRecipes(`${API_URL}&q=random`);
     },[]);
     
 
@@ -5067,7 +5067,7 @@ function App() {
         {/*Main container*/}
         <div className="flex flex-col items-center pt-10 pb-10">
 
-            <h1 className="font-bold font-[Unbounded] text-7xl pb-5 text-center">MealSpiration</h1>
+            <h1 className="font-bold font-[Unbounded] text-7xl pb-12 text-center"><span className='text-[#ff4b33]'>Meal</span>Spiration</h1>
             <p className="font-[Tangerine] text-5xl text-center pb-16 italic">"A recipe is a story that ends with a good meal."</p>
 
             {/*Input container*/}
