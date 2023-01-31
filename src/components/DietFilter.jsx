@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { dietContext } from '../App';
+import {AiOutlineCheckCircle, AiFillCheckCircle} from 'react-icons/ai'
 
 export const DietFilter = () => {
 
@@ -7,17 +8,17 @@ export const DietFilter = () => {
 
     return (
 
-    <div className="relative flex flex-col items-center w-56 pt-5 h-3 rounded-2xl">
+    <div className="relative flex flex-col items-center w-40 pt-5 h-3 rounded-2xl font-[Itim] text-lg">
     {/*Filter container*/}
     <button 
-    className={dietOpen ? "bg-blue-500 p-2 w-full rounded-t-2xl" : "bg-blue-500 p-2 w-full rounded-2xl"}
+    className={dietOpen ? "bg-[#ff4b33] p-2 w-full rounded-t-2xl" : "bg-[#ff4b33] p-2 w-full rounded-2xl"}
     onClick={()=>{setDietOpen(!dietOpen),setMealTypeOpen(false),setHealthOpen(false),setDishTypeOpen(false)}}
     >Diet</button>
 
     {/*filter options container */}
-    <div className={dietOpen ? "flex flex-col w-56 align-center bg-blue-500 rounded-b-2xl" : "hidden"}>
+    <div className={dietOpen ? "flex flex-col w-40 align-center bg-[#ff604b] rounded-b-2xl border-t-4 border-white" : "hidden"}>
         {/*filter option*/}
-        <div className="flex flex-row ml-16 pb-2">
+        <div className="flex flex-row ml-5 pb-2">
             <input onChange={()=>{
                 if(veganChecked === false && !queryArray.includes("&health=vegan")){
                     setQueryArray([...queryArray,"&health=vegan"])
@@ -26,11 +27,11 @@ export const DietFilter = () => {
                  setQueryArray([...tempArray])
                 }
                 setVeganChecked(!veganChecked)
-                }} checked={veganChecked} className="" id="vegan" type="checkbox" />
-            <label className="" htmlFor="vegan" >Vegan</label>
+                }} checked={veganChecked} className="appearance-none" id="vegan" type="checkbox" />
+            <label className="flex items-center" htmlFor="vegan" >{veganChecked ? <><AiFillCheckCircle/><span className="pl-2">Vegan</span></> : <><AiOutlineCheckCircle/><span className="pl-2">Vegan</span></>}</label>
         </div>
         {/*filter option*/}
-        <div className="flex flex-row ml-16 pb-2">
+        <div className="flex flex-row ml-5 pb-2">
             <input onChange={()=>{
                 if(vegetarianChecked === false && !queryArray.includes("&health=vegetarian")){
                     setQueryArray([...queryArray,"&health=vegetarian"])
@@ -39,11 +40,11 @@ export const DietFilter = () => {
                  setQueryArray([...tempArray])
                 }
                 setVegetarianChecked(!vegetarianChecked)
-                }} checked={vegetarianChecked}  className="" id="vegetarian" type="checkbox" />
-            <label className="" htmlFor="vegetarian" >Vegetarian</label>
+                }} checked={vegetarianChecked}  className="appearance-none" id="vegetarian" type="checkbox" />
+            <label className="flex items-center" htmlFor="vegetarian" >{vegetarianChecked ? <><AiFillCheckCircle/><span className="pl-2">Vegetarian</span></> : <><AiOutlineCheckCircle/><span className="pl-2">Vegetarian</span></>}</label>
         </div>
         {/*filter option*/}
-        <div className="flex flex-row ml-16 pb-2">
+        <div className="flex flex-row ml-5 pb-2">
             <input onChange={()=>{
                 if(ketoChecked === false && !queryArray.includes("&health=keto-friendly")){
                     setQueryArray([...queryArray,"&health=keto-friendly"])
@@ -52,11 +53,11 @@ export const DietFilter = () => {
                  setQueryArray([...tempArray])
                 }
                 setKetoChecked(!ketoChecked)
-                }} checked={ketoChecked}  className="" id="keto" type="checkbox" />
-            <label className="" htmlFor="keto" >Keto</label>
+                }} checked={ketoChecked}  className="appearance-none" id="keto" type="checkbox" />
+            <label className="flex items-center" htmlFor="keto" >{ketoChecked ? <><AiFillCheckCircle/><span className="pl-2">Keto</span></> : <><AiOutlineCheckCircle/><span className="pl-2">Keto</span></>}</label>
         </div>
         {/*filter option*/}
-        <div className="flex flex-row ml-16 pb-2">
+        <div className="flex flex-row ml-5 pb-2">
             <input onChange={()=>{
                 if(kosherChecked === false && !queryArray.includes("&health=kosher")){
                     setQueryArray([...queryArray,"&health=kosher"])
@@ -65,11 +66,11 @@ export const DietFilter = () => {
                  setQueryArray([...tempArray])
                 }
                 setKosherChecked(!kosherChecked)
-                }} checked={kosherChecked}  className="" id="kosher" type="checkbox" />
-            <label className="" htmlFor="kosher" >Kosher</label>
+                }} checked={kosherChecked}  className="appearance-none" id="kosher" type="checkbox" />
+            <label className="flex items-center" htmlFor="kosher" >{kosherChecked ? <><AiFillCheckCircle/><span className="pl-2">Kosher</span></> : <><AiOutlineCheckCircle/><span className="pl-2">Kosher</span></>}</label>
         </div>
         {/*filter option*/}
-        <div className="flex flex-row ml-16 pb-2">
+        <div className="flex flex-row ml-5 pb-2">
             <input onChange={()=>{
                 if(paleoChecked === false && !queryArray.includes("&health=paleo")){
                     setQueryArray([...queryArray,"&health=paleo"])
@@ -78,8 +79,8 @@ export const DietFilter = () => {
                  setQueryArray([...tempArray])
                 }
                 setPaleoChecked(!paleoChecked)
-                }} checked={paleoChecked}  className="" id="paleo" type="checkbox" />
-            <label className="" htmlFor="paleo" >Paleo</label>
+                }} checked={paleoChecked}  className="appearance-none" id="paleo" type="checkbox" />
+            <label className="flex items-center" htmlFor="paleo" >{paleoChecked ? <><AiFillCheckCircle/><span className="pl-2">Paleo</span></> : <><AiOutlineCheckCircle/><span className="pl-2">Paleo</span></>}</label>
         </div>
         
     </div>

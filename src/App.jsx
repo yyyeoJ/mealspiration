@@ -16,10 +16,10 @@ function App() {
 
   // api site  https://developer.edamam.com/edamam-docs-recipe-api#/
 
-    const [recipes,setRecipes] = useState([]);
+    //const [recipes,setRecipes] = useState([]);
     const [queryArray,setQueryArray] = useState([]);
     const [inputField,setInputField] = useState("");
-/*
+
     const recipes = [
         {
             "recipe": {
@@ -5009,7 +5009,7 @@ function App() {
             }
         }
     ]
-    */
+    
     const [API_URL,setAPI_URL] = useState("https://api.edamam.com/api/recipes/v2?type=public&app_id=01e9579a&app_key=08c4b8ce44973e5658e1fafd517be559&random=true&field=label&field=image&field=url&field=yield&field=dietLabels&field=healthLabels&field=ingredientLines&field=calories&field=mealType&field=dishType&field=totalNutrients");
 
     const searchRecipes = async (api)=>{
@@ -5061,28 +5061,28 @@ function App() {
 
 
 
-    <div className="App h-screen w-screen bg-gray-900 text-white overflow-x-hidden">
+    <div className="App h-screen w-screen bg-[#161613] text-white overflow-x-hidden">
     {/*App div*/}
 
         {/*Main container*/}
         <div className="flex flex-col items-center pt-10 pb-10">
 
-            <h1 className="font-bold text-5xl pb-5 text-center">MealSpiration</h1>
-            <p className="text-lg text-center pb-5 italic">"A recipe is a story that ends with a good meal."</p>
+            <h1 className="font-bold font-[Unbounded] text-7xl pb-5 text-center">MealSpiration</h1>
+            <p className="font-[Tangerine] text-5xl text-center pb-16 italic">"A recipe is a story that ends with a good meal."</p>
 
             {/*Input container*/}
             <div className="flex flex-col items-center">
 
                 {/*Search container*/}
-                <div className="input-group flex flex-row items-center w-auto">
+                <div className="input-group flex flex-row items-center w-auto pb-5">
                     <input 
                     placeholder="Search for a recipe" 
-                    className="h-8 border p-3 text-black  border-black rounded-2xl w-60" type="text" 
+                    className="font-[Itim] h-10 w-96 px-5 border focus:outline-none text-black text-lg  rounded-2xl" type="text" 
                     onChange={(e)=>{
                         setInputField(e.target.value);
                     }}/>
                     <button 
-                    className="relative bg-blue-500 p-2 rounded-2xl right-8"
+                    className="w-10 h-10 relative right-8  bg-[#ff4b33] flex items-center justify-center rounded-2xl"
                     onClick={()=>{
                         if(inputField === ""){
                             searchRecipes(`${API_URL}&q=random`)
@@ -5093,7 +5093,7 @@ function App() {
                         }
                         
                     }}
-                    ><BsSearch/></button>
+                    ><BsSearch className="w-5 h-5"/></button>
                 </div>
                 
                 {/*Filters*/}
@@ -5120,7 +5120,7 @@ function App() {
             </div>
             
             {/*Cards container*/}
-            <div className="pt-40 gap-5 w-full flex flex-row flex-wrap justify-center items-stretch">
+            <div className="pt-40 gap-7 w-full flex flex-row flex-wrap justify-center items-stretch">
                 {/*<Card data={testdata}/>*/}
                 {
                     recipes.map((recipe,index)=>{

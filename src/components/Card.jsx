@@ -15,28 +15,28 @@ const Card = (props) => {
   const [ingredientsOpen,setIngredientsOpen] = useState(false);
 
   return (
-    <div className="bg-gray-700  shadow-2xl shadow-black rounded-2xl flex flex-col justify-center align-center w-96 h-full gap-2 pb-2">
+    <div className="bg-[#3f3f34]  shadow-2xl shadow-black rounded-2xl flex flex-col justify-center align-center w-[24rem] h-full gap-2 pb-2 font-[Itim]">
       <img className="w-full rounded-t-2xl" src={image} alt="" />
-      <div className="pb-2 px-2 border-b-2 text-xl">{label}</div>
-      <div className="px-2">{kcal} Calories ({Math.floor(kcal / servings)}Kcal / serving)</div>
-      <div className="px-2">Protein: {protein}g ({Math.floor(protein / servings)}g / serving)</div>
-      <div className="px-2">Carbs: {carbs}g ({Math.floor(carbs / servings)}g / serving)</div>
-      <div className="px-2">Fat: {fat}g ({Math.floor(fat / servings)}g / serving)</div>
+      <div className="pb-2 px-2 border-b-2 text-2xl">{label}</div>
+      <div className="px-2 text-2xl"><span className='text-[#ff4b33]'>{kcal}</span> Kcal (<span className='text-[#ff4b33]'>{Math.floor(kcal / servings)}</span> / serving)</div>
+      <div className="px-2 text-xl"><span className='text-[#ff4b33]'>{servings}</span> servings</div>
+      <div className="px-2 text-xl">Protein: <span className='text-[#ff4b33]'>{protein}</span>g (<span className='text-[#ff4b33]'>{Math.floor(protein / servings)}</span> / serving)</div>
+      <div className="px-2 text-xl">Carbs: <span className='text-[#ff4b33]'>{carbs}</span>g (<span className='text-[#ff4b33]'>{Math.floor(carbs / servings)}</span> / serving)</div>
+      <div className="px-2 text-xl border-b-2 pb-2">Fat: <span className='text-[#ff4b33]'>{fat}</span>g (<span className='text-[#ff4b33]'>{Math.floor(fat / servings)}</span> / serving)</div>
 
-      <div className="border-b-2 px-2 pb-2">{servings} servings</div>
-     
+     <span className='text-[#ff4b33]'></span>
       <button 
-      className="relative top-2 left-2 self-start bg-blue-500 rounded-2xl px-3 py-1 w-auto"
+      className="relative top-2 left-2 self-start bg-[#ff4b33] rounded-2xl px-3 py-1 w-auto"
       onClick={()=>{
         setIngredientsOpen(!ingredientsOpen)}}
       >Ingredients</button>
-      {ingredientsOpen && ingredientlines.map((ingredient)=>{return <div className="px-2 pt-2">{ingredient}</div>})}
+      {ingredientsOpen && <ul className="list-disc list-inside border-b border-white">{ingredientlines.map((ingredient)=>{return <li className="px-2 pt-2">{ingredient}</li>})}</ul>}
 
 
       {/*Buttons container */}
       <div className="flex align-start items-start align-start justify-start gap-5 pt-5">
-        <button className="relative left-2 bg-blue-500 rounded-2xl w-40 p-1"><a href={url} target="_blank">Check recipe</a></button>
-        <button className="bg-blue-500 rounded-2xl p-2"><FaHeart/></button>
+        <button className="relative left-2 bg-[#ff4b33] rounded-2xl w-40 p-1"><a href={url} target="_blank">Check recipe</a></button>
+        <button className="bg-[#ff4b33] rounded-2xl p-2"><FaHeart/></button>
       </div>
 
     </div>
