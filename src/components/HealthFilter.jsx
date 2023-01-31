@@ -3,7 +3,7 @@ import { healthContext } from '../App'
 
 const HealthFilter = () => {
 
-    const {mealTypeOpen, setMealTypeOpen,healthOpen,setHealthOpen,dietOpen,setDietOpen,dishTypeOpen,setDishTypeOpen,alcoholfreeChecked,setAlcoholfreeChecked,dairyfreeChecked,setDairyfreeChecked,glutenfreeChecked,setGlutenfreeChecked,peanutfreeChecked,setPeanutfreeChecked,lowsugarChecked,setLowsugarchecked} = useContext(healthContext);
+    const {queryArray,setQueryArray,mealTypeOpen, setMealTypeOpen,healthOpen,setHealthOpen,dietOpen,setDietOpen,dishTypeOpen,setDishTypeOpen,alcoholfreeChecked,setAlcoholfreeChecked,dairyfreeChecked,setDairyfreeChecked,glutenfreeChecked,setGlutenfreeChecked,peanutfreeChecked,setPeanutfreeChecked,lowsugarChecked,setLowsugarchecked} = useContext(healthContext);
 
     return (
     <div className="relative flex flex-col items-center w-56 pt-5 h-3 rounded-2xl">
@@ -17,27 +17,75 @@ const HealthFilter = () => {
     <div className={healthOpen ? "flex flex-col w-56 align-center bg-blue-500 rounded-b-2xl" : "hidden"}>
         {/*filter option*/}
         <div className="flex flex-row ml-16 pb-2">
-            <input onChange={()=>{setAlcoholfreeChecked(!alcoholfreeChecked)}} checked={alcoholfreeChecked} className="" id="alcoholfree" type="checkbox" />
+            <input onChange={()=>{
+                
+                if(alcoholfreeChecked === false && !queryArray.includes("&health=alcohol-free")){
+                    setQueryArray([...queryArray,"&health=alcohol-free"])
+                }else{
+                 const tempArray = queryArray.filter(query => query !== "&health=alcohol-free");
+                 setQueryArray([...tempArray])
+                }
+
+                setAlcoholfreeChecked(!alcoholfreeChecked)
+            }} checked={alcoholfreeChecked} className="" id="alcoholfree" type="checkbox" />
             <label className="" htmlFor="alcoholfree" >Alcohol-free</label>
         </div>
         {/*filter option*/}
         <div className="flex flex-row ml-16 pb-2">
-            <input onChange={()=>{setDairyfreeChecked(!dairyfreeChecked)}} checked={dairyfreeChecked}  className="" id="dairyfree" type="checkbox" />
+            <input onChange={()=>{
+
+                if(dairyfreeChecked === false && !queryArray.includes("&health=dairy-free")){
+                    setQueryArray([...queryArray,"&health=dairy-free"])
+                }else{
+                const tempArray = queryArray.filter(query => query !== "&health=dairy-free");
+                setQueryArray([...tempArray])
+                }
+
+
+                setDairyfreeChecked(!dairyfreeChecked)
+                }} checked={dairyfreeChecked}  className="" id="dairyfree" type="checkbox" />
             <label className="" htmlFor="dairyfree" >Dairy-free</label>
         </div>
         {/*filter option*/}
         <div className="flex flex-row ml-16 pb-2">
-            <input onChange={()=>{setGlutenfreeChecked(!glutenfreeChecked)}} checked={glutenfreeChecked}  className="" id="glutenfree" type="checkbox" />
+            <input onChange={()=>{
+
+                if(glutenfreeChecked === false && !queryArray.includes("&health=gluten-free")){
+                    setQueryArray([...queryArray,"&health=gluten-free"])
+                }else{
+                const tempArray = queryArray.filter(query => query !== "&health=gluten-free");
+                setQueryArray([...tempArray])
+                }
+
+                setGlutenfreeChecked(!glutenfreeChecked)
+                }} checked={glutenfreeChecked}  className="" id="glutenfree" type="checkbox" />
             <label className="" htmlFor="glutenfree" >Gluten-free</label>
         </div>
         {/*filter option*/}
         <div className="flex flex-row ml-16 pb-2">
-            <input onChange={()=>{setPeanutfreeChecked(!peanutfreeChecked)}} checked={peanutfreeChecked}  className="" id="peanutfree" type="checkbox" />
+            <input onChange={()=>{
+                if(peanutfreeChecked === false && !queryArray.includes("&health=peanut-free")){
+                    setQueryArray([...queryArray,"&health=peanut-free"])
+                }else{
+                    const tempArray = queryArray.filter(query => query !== "&health=peanut-free");
+                    setQueryArray([...tempArray])
+                }
+                setPeanutfreeChecked(!peanutfreeChecked)
+                }} checked={peanutfreeChecked}  className="" id="peanutfree" type="checkbox" />
             <label className="" htmlFor="peanutfree" >Peanut-free</label>
         </div>
         {/*filter option*/}
         <div className="flex flex-row ml-16 pb-2">
-            <input onChange={()=>{setLowsugarchecked(!lowsugarChecked)}} checked={lowsugarChecked}  className="" id="lowsugar" type="checkbox" />
+            <input onChange={()=>{
+
+                if(lowsugarChecked === false && !queryArray.includes("&health=sugar-conscious")){
+                    setQueryArray([...queryArray,"&health=sugar-conscious"])
+                }else{
+                const tempArray = queryArray.filter(query => query !== "&health=sugar-conscious");
+                setQueryArray([...tempArray])
+                }
+                setLowsugarchecked(!lowsugarChecked)
+                }} checked={lowsugarChecked}  className="" id="lowsugar" type="checkbox" />
             <label className="" htmlFor="lowsugar" >Low sugar</label>
         </div>
         
