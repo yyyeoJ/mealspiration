@@ -2,24 +2,18 @@ import './App.css'
 import {BsSearch} from "react-icons/bs"
 import { createContext, useContext, useEffect, useState } from 'react'
 import Card from './components/Card';
-import MealTypeFilter from './components/MealTypeFilter';
-import HealthFilter from './components/HealthFilter';
-import DietFilter from './components/DietFilter';
-import DishTypeFilter from './components/DishTypeFilter';
+import Filter from './components/Filter';
 
-export const mealTypeContext = createContext();
-export const healthContext = createContext();
-export const dietContext = createContext();
-export const dishTypeContext = createContext();
+export const filterContext = createContext();
 
 function App() {
 
   // api site  https://developer.edamam.com/edamam-docs-recipe-api#/
 
-    const [recipes,setRecipes] = useState([]);
+    //const [recipes,setRecipes] = useState([]);
     const [queryArray,setQueryArray] = useState([]);
     const [inputField,setInputField] = useState("");
-/*
+
     const recipes = [
         {
             "recipe": {
@@ -5009,7 +5003,7 @@ function App() {
             }
         }
     ]
-    */
+   
     const [API_URL,setAPI_URL] = useState("https://api.edamam.com/api/recipes/v2?type=public&app_id=01e9579a&app_key=08c4b8ce44973e5658e1fafd517be559&random=true&field=label&field=image&field=url&field=yield&field=dietLabels&field=healthLabels&field=ingredientLines&field=calories&field=mealType&field=dishType&field=totalNutrients");
 
     const searchRecipes = async (api)=>{
@@ -5023,66 +5017,61 @@ function App() {
  
 
     useEffect(()=>{
-        searchRecipes(`${API_URL}&q=random`);
+        //searchRecipes(`${API_URL}&q=random`);
     },[]);
     
-
-
-
-    const [mealTypeOpen, setMealTypeOpen] = useState(false);
     const [breakfastChecked,setBreakfastChecked] = useState(false);
     const [brunchChecked,setBrunchChecked] = useState(false);
     const [lunchChecked,setLunchChecked] = useState(false);
     const [snackChecked,setSnackChecked] = useState(false);
     const [teatimeChecked,setTeatimeChecked] = useState(false);
 
-    const [healthOpen, setHealthOpen] = useState(false);
     const [alcoholfreeChecked, setAlcoholfreeChecked] = useState(false);
     const [dairyfreeChecked, setDairyfreeChecked] = useState(false);
     const [glutenfreeChecked, setGlutenfreeChecked] = useState(false);
     const [peanutfreeChecked, setPeanutfreeChecked] = useState(false);
     const [lowsugarChecked, setLowsugarchecked] = useState(false);
 
-    const [dietOpen,setDietOpen] = useState(false);
     const [veganChecked,setVeganChecked] = useState(false);
     const [vegetarianChecked,setVegetarianChecked] = useState(false);
     const [ketoChecked,setKetoChecked] = useState(false);
     const [kosherChecked,setKosherChecked] = useState(false);
     const [paleoChecked,setPaleoChecked] = useState(false);
 
-    const [dishTypeOpen,setDishTypeOpen] = useState(false);
     const [mainChecked,setMainChecked] = useState(false);
     const [sideChecked,setSideChecked] = useState(false);
     const [dessertChecked,setDessertChecked] = useState(false);
     const [drinksChecked,setDrinksChecked] = useState(false);
+
+    
 
 
     return (
 
 
 
-    <div className="App h-screen w-screen bg-[#161613] text-white overflow-x-hidden">
+    <div className="App h-screen w-screen dark:bg-[#181818] bg-[#fcfbdc] dark:text-white text-black overflow-x-hidden">
     {/*App div*/}
 
         {/*Main container*/}
-        <div className="flex flex-col items-center pt-10 pb-10">
+        <div className="transition-all duration-1000 flex flex-col items-center pt-10 pb-10">
 
-            <h1 className="font-bold font-[Unbounded] text-7xl pb-12 text-center"><span className='text-[#ff4b33]'>Meal</span>Spiration</h1>
-            <p className="font-[Tangerine] text-5xl text-center pb-16 italic">"A recipe is a story that ends with a good meal."</p>
+            <h1 className="animate-appearDown font-bold font-[Unbounded] text-3xl md:text-7xl pb-12 text-center"><span className='text-[#ff4b33]'>Meal</span>Spiration</h1>
+            <p className="animate-appearDown font-[Tangerine] text-2xl md:text-4xl text-center pb-16 italic">"A recipe is a story that ends with a good meal."</p>
 
             {/*Input container*/}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col gap-5 md:flex-row items-center">
 
                 {/*Search container*/}
-                <div className="input-group flex flex-row items-center w-auto pb-5">
+                <div className="relative animate-appearDown input-group flex flex-row items-center align-center justify-center">
                     <input 
                     placeholder="Search for a recipe" 
-                    className="font-[Itim] h-10 w-96 px-5 border focus:outline-none text-black text-lg  rounded-2xl" type="text" 
+                    className="font-[Itim] h-10 w-72 px-5 shadow shadow-black focus:outline-none text-black text-lg  rounded-2xl" type="text" 
                     onChange={(e)=>{
                         setInputField(e.target.value);
                     }}/>
                     <button 
-                    className="w-10 h-10 relative right-8  bg-[#ff4b33] flex items-center justify-center rounded-2xl"
+                    className="shadow shadow-black w-10 h-10 absolute right-0 bg-[#ff4b33] flex items-center justify-center rounded-2xl"
                     onClick={()=>{
                         if(inputField === ""){
                             searchRecipes(`${API_URL}&q=random`)
@@ -5097,30 +5086,25 @@ function App() {
                 </div>
                 
                 {/*Filters*/}
-                <div className="flex justify-center gap-5">
-                    <mealTypeContext.Provider value={{queryArray,setQueryArray,mealTypeOpen, setMealTypeOpen,healthOpen,setHealthOpen,dietOpen,setDietOpen,dishTypeOpen,setDishTypeOpen, breakfastChecked,setBreakfastChecked,brunchChecked,setBrunchChecked,lunchChecked,setLunchChecked,snackChecked,setSnackChecked,teatimeChecked,setTeatimeChecked}}>
-                    <MealTypeFilter/>
-                    </mealTypeContext.Provider>
+                <div className="animate-appearDown inline gap-5">
 
-                    <healthContext.Provider value={{queryArray,setQueryArray,mealTypeOpen, setMealTypeOpen,healthOpen,setHealthOpen,dietOpen,setDietOpen,dishTypeOpen,setDishTypeOpen,alcoholfreeChecked,setAlcoholfreeChecked,dairyfreeChecked,setDairyfreeChecked,glutenfreeChecked,setGlutenfreeChecked,peanutfreeChecked,setPeanutfreeChecked,lowsugarChecked,setLowsugarchecked}}>
-                    <HealthFilter/>
-                    </healthContext.Provider>
-
-                    <dietContext.Provider value={{queryArray,setQueryArray,mealTypeOpen, setMealTypeOpen,healthOpen,setHealthOpen,dietOpen,setDietOpen,dishTypeOpen,setDishTypeOpen,veganChecked,setVeganChecked,vegetarianChecked,setVegetarianChecked,ketoChecked,setKetoChecked,kosherChecked,setKosherChecked,paleoChecked,setPaleoChecked}}>
-                    <DietFilter/>
-                    </dietContext.Provider>
-
-                    <dishTypeContext.Provider value={{queryArray,setQueryArray,mealTypeOpen, setMealTypeOpen,healthOpen,setHealthOpen,dietOpen,setDietOpen,dishTypeOpen,setDishTypeOpen,mainChecked,setMainChecked,sideChecked,setSideChecked,dessertChecked,setDessertChecked,drinksChecked,setDrinksChecked}}>
-                    <DishTypeFilter/>
-                    </dishTypeContext.Provider>
-
+                    <filterContext.Provider value={{setQueryArray,queryArray,breakfastChecked,setBreakfastChecked,brunchChecked,setBrunchChecked,
+                                                    lunchChecked,setLunchChecked,snackChecked,setSnackChecked,teatimeChecked,setTeatimeChecked,
+                                                    alcoholfreeChecked,setAlcoholfreeChecked,dairyfreeChecked,setDairyfreeChecked,glutenfreeChecked,
+                                                    setGlutenfreeChecked,peanutfreeChecked,setPeanutfreeChecked,lowsugarChecked,setLowsugarchecked,
+                                                    veganChecked,setVeganChecked,vegetarianChecked,setVegetarianChecked,ketoChecked,setKetoChecked,
+                                                    kosherChecked,setKosherChecked,paleoChecked,setPaleoChecked,mainChecked,setMainChecked,
+                                                    sideChecked,setSideChecked,dessertChecked,setDessertChecked,drinksChecked,setDrinksChecked
+                                                    }}>
+                        <Filter/>
+                    </filterContext.Provider>
 
                 </div>
 
             </div>
             
             {/*Cards container*/}
-            <div className="pt-40 gap-7 w-full flex flex-row flex-wrap justify-center items-stretch">
+            <div className="pt-20 gap-7 w-full flex flex-row flex-wrap justify-center items-stretch">
                 {/*<Card data={testdata}/>*/}
                 {
                     recipes.map((recipe,index)=>{
