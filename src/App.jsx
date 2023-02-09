@@ -3,12 +3,14 @@ import {BsSearch} from "react-icons/bs"
 import { createContext, useContext, useEffect, useState } from 'react'
 import Card from './components/Card';
 import Filter from './components/Filter';
+import ReactDOM from 'react-dom/client'
 
 export const filterContext = createContext();
 
 function App() {
 
   // api site  https://developer.edamam.com/edamam-docs-recipe-api
+  //&from=0&to=50
 
   // v2 api not working, random recipe temporarily disabled
 
@@ -18,7 +20,7 @@ function App() {
 
    
    
-    const [API_URL,setAPI_URL] = useState("https://api.edamam.com/search?&app_id=01e9579a&app_key=08c4b8ce44973e5658e1fafd517be559&from=0&to=100&random=true");
+    const [API_URL,setAPI_URL] = useState("https://api.edamam.com/api/recipes/v2?type=public&app_id=01e9579a&app_key=08c4b8ce44973e5658e1fafd517be559&random=true");
 
     const searchRecipes = async (api)=>{
         let arrayString = ""
@@ -31,7 +33,7 @@ function App() {
  
 
    useEffect(()=>{
-        //searchRecipes(`${API_URL}&q=random`);
+        searchRecipes(`${API_URL}&q=random`);
     },[]); 
     
     const [breakfastChecked,setBreakfastChecked] = useState(false);
@@ -88,7 +90,7 @@ function App() {
                     onKeyDown={(e)=>{
                         if(e.key === 'Enter'){
                             if(inputField === ""){
-                                //searchRecipes(`${API_URL}&q=random`)
+                                searchRecipes(`${API_URL}&q=random`)
                             }else{
                                 let tempString = inputField
                                 tempString = tempString.replace(/\s/g, "%20")
@@ -102,7 +104,7 @@ function App() {
                     className="shadow shadow-black w-10 h-10 absolute right-0 bg-[#ff4b33] flex items-center justify-center rounded-2xl"
                     onClick={()=>{
                         if(inputField === ""){
-                            //searchRecipes(`${API_URL}&q=random`)
+                            searchRecipes(`${API_URL}&q=random`)
                         }else{
                             let tempString = inputField
                             tempString = tempString.replace(/\s/g, "%20")
@@ -133,13 +135,11 @@ function App() {
             </div>
             
             {/*Cards container*/}
-            <div className="pt-20 gap-7 w-full flex flex-row flex-wrap justify-center items-stretch">
+            <div className=" max-w-[80rem] pt-20 gap-7 w-full flex flex-row flex-wrap justify-center items-stretch">
                 {/*<Card data={testdata}/>*/}
                 {
-                    
-                recipes.map((recipe,index)=>{ 
-                    return <Card key={index} data={recipe}/>
-                })
+                
+                recipes.map((recipe)=>{return <Card key={recipe.recipe.uri} data={recipe}/>})
                     
                 }
             </div>
