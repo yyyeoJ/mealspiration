@@ -10,9 +10,6 @@ export const filterContext = createContext();
 function App() {
 
   // api site  https://developer.edamam.com/edamam-docs-recipe-api
-  //&from=0&to=50
-
-  // v2 api not working, random recipe temporarily disabled
 
     const [recipes,setRecipes] = useState([]);
     const [queryArray,setQueryArray] = useState([]);
