@@ -3,7 +3,7 @@ import {BsSearch} from "react-icons/bs"
 import { createContext, useContext, useEffect, useState } from 'react'
 import Card from './components/Card';
 import Filter from './components/Filter';
-import ReactDOM from 'react-dom/client'
+import testData from "./assets/testdata.json"
 
 export const filterContext = createContext();
 
@@ -11,7 +11,8 @@ function App() {
 
   // api site  https://developer.edamam.com/edamam-docs-recipe-api
 
-    const [recipes,setRecipes] = useState([]);
+    //const [recipes,setRecipes] = useState([]);
+    const recipes = testData
     const [queryArray,setQueryArray] = useState([]);
     const [inputField,setInputField] = useState("");
 
@@ -24,13 +25,13 @@ function App() {
         queryArray.map((query)=>arrayString+=query)
         const res = await fetch(`${api}${arrayString}`);
         let data = await res.json();
-        setRecipes(data.hits);
+        //setRecipes(data.hits);
     }
 
  
 
    useEffect(()=>{
-        searchRecipes(`${API_URL}&q=random`);
+        //searchRecipes(`${API_URL}&q=random`);
     },[]); 
     
     const [breakfastChecked,setBreakfastChecked] = useState(false);
@@ -60,7 +61,6 @@ function App() {
 
 
     return (
-
 
 
     <div className="App h-screen w-screen dark:bg-[#181818] bg-[#fcfbdc] dark:text-white text-black overflow-x-hidden">
