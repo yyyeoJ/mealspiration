@@ -15,6 +15,9 @@ const Card = (props) => {
 
   const [ingredientsOpen,setIngredientsOpen] = useState(false);
 
+  console.log(image);
+
+
   return (
 
 

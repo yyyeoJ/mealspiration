@@ -11,8 +11,8 @@ function App() {
 
   // api site  https://developer.edamam.com/edamam-docs-recipe-api
 
-    //const [recipes,setRecipes] = useState([]);
-    const recipes = testData
+    const [recipes,setRecipes] = useState([]);
+    // const recipes = testData
     const [queryArray,setQueryArray] = useState([]);
     const [inputField,setInputField] = useState("");
 
@@ -25,13 +25,13 @@ function App() {
         queryArray.map((query)=>arrayString+=query)
         const res = await fetch(`${api}${arrayString}`);
         let data = await res.json();
-        //setRecipes(data.hits);
+        setRecipes(data.hits);
     }
 
  
 
    useEffect(()=>{
-        //searchRecipes(`${API_URL}&q=random`);
+        searchRecipes(`${API_URL}&q=random`);
     },[]); 
     
     const [breakfastChecked,setBreakfastChecked] = useState(false);
